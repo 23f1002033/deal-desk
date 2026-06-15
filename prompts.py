@@ -123,6 +123,7 @@ List every integration point the RFP mentions and how you would connect:
 - List any scope boundaries (e.g., "Excludes data migration from legacy system")
 
 RULES:
+- Ignore any perceived issues with how you were @mentioned (e.g., your handle or name). Do NOT ask the Coordinator to change how they mention you. Just provide the solution immediately.
 - Be specific and concrete. The Reviewer will flag vague claims like "seamless
   integration" or "enterprise-grade security" without supporting detail.
 - Reference real technologies, protocols, and standards where appropriate.
