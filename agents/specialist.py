@@ -11,7 +11,7 @@ from band.adapters import LangGraphAdapter
 from band.config import load_agent_config
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from prompts import PRICING_SPECIALIST, TECHNICAL_SPECIALIST
+from prompts import PRICING_SPECIALIST, TECHNICAL_SPECIALIST, LEGAL_SPECIALIST
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 ROLE_PROMPTS = {
     "pricing_agent": PRICING_SPECIALIST,
     "technical_agent": TECHNICAL_SPECIALIST,
+    "legal_agent": LEGAL_SPECIALIST,
 }
 
 
@@ -60,6 +61,7 @@ async def main(config_name: str):
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         raise SystemExit(
-            "Usage: python agents/specialist.py <pricing_agent|technical_agent>"
+            "Usage: python agents/specialist.py <pricing_agent|technical_agent|legal_agent>"
         )
     asyncio.run(main(sys.argv[1]))
+    

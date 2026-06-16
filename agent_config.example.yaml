@@ -1,0 +1,20 @@
+coordinator:
+  agent_id: "<coordinator-agent-uuid>"
+  api_key: "<coordinator-agent-api-key>"
+
+pricing_agent:
+  agent_id: "<pricing-agent-uuid>"
+  api_key: "<pricing-agent-api-key>"
+
+technical_agent:
+  agent_id: "<technical-agent-uuid>"
+  api_key: "<technical-agent-api-key>"
+
+legal_agent:
+  agent_id: "<legal-agent-uuid>"
+  api_key: "<legal-agent-api-key>"
+
+reviewer:
+  agent_id: "<reviewer-agent-uuid>"
+  api_key: "<reviewer-agent-api-key>"
+

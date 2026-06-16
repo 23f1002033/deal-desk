@@ -3,7 +3,7 @@
 **From:** Sarah Chen, VP of Sales Operations, NovaTech Industries
 **To:** [Your Company]
 **Date:** June 2026
-**Subject:** Request for Proposal — Enterprise CRM Platform Migration
+**Subject:** Request for Proposal - Enterprise CRM Platform Migration
 
 ---
 
@@ -18,7 +18,7 @@ uses a legacy on-premise CRM (Siebel) that is end-of-life in Q1 2027.
 ### Functional Requirements
 - Migrate 5 years of customer data (~2.4M records) from Siebel to a modern
   cloud CRM
-- Support for our existing sales process: Lead → Opportunity → Quote → Order
+- Support for our existing sales process: Lead - Opportunity - Quote - Order
 - Mobile app for field sales reps (iOS and Android)
 - Real-time dashboards for sales managers with pipeline and forecast views
 - Email integration with Microsoft 365
@@ -39,7 +39,7 @@ uses a legacy on-premise CRM (Siebel) that is end-of-life in Q1 2027.
 
 ## 3. Budget & Timeline
 
-- **Budget:** $400,000–$500,000 total (including implementation and first-year
+- **Budget:** $400,000 - $500,000 total (including implementation and first-year
   licensing)
 - **Timeline:** Go-live by January 2027 (6-month implementation window)
 - **Training:** Need onsite training for 180 sales reps + 12 managers

@@ -3,7 +3,7 @@
 **From:** Jake Morrison, CTO, RapidScale (Series A Startup)
 **To:** [Your Company]
 **Date:** June 2026
-**Subject:** Request for Proposal — Developer Platform Licensing
+**Subject:** Request for Proposal - Developer Platform Licensing
 
 ---
 
@@ -28,7 +28,7 @@ enterprise stack.
 
 ## 3. Budget & Timeline
 
-- **Budget:** We're a startup — very tight. Need the absolute best price possible.
+- **Budget:** We're a startup - very tight. Need the absolute best price possible.
   We've seen competitors offer 30-35% startup discounts and expect similar.
 - **Timeline:** Need to be live within 8 weeks
 - **Team:** 25 developers + 5 DevOps engineers
