@@ -1,105 +1,368 @@
 # Deal Desk 🤝
 
-> An AI **Deal Desk** built on [Band](https://www.band.ai/) for the Band of Agents
-> Hackathon (Track 1 - Internal Enterprise Workflows). A team of specialized agents
-> turns a customer RFP into a vetted, ready-to-send proposal - coordinating entirely
-> through Band.
+> AI-powered Multi-Agent Deal Desk built on **Band** for the **Band of Agents Hackathon (Track 1 – Internal Enterprise Workflows)**.
+>
+> Deal Desk transforms customer RFPs into vetted, ready-to-send enterprise proposals through dynamic agent recruitment, adversarial review, and human-in-the-loop approvals.
 
-## The idea
+---
 
-Drop a customer RFP into a Band chat room and @mention the Coordinator. From there,
-everything happens **inside Band**:
+## 🚀 Demo
 
-1. The **Coordinator** reads the RFP and **recruits only the specialists the RFP
-   actually needs** - at runtime. A simple license renewal pulls in only Pricing.
-   A contract-heavy, regulated deal pulls in Pricing, Technical, *and* Legal. The
-   team assembles itself to fit the request.
-2. Each **specialist** drafts its section and hands it back.
-3. A **Reviewer** red-teams every section and pushes weak work back for revision -
-   a real review loop, not a rubber stamp.
-4. A **human is pulled into the room** for approval whenever a discount exceeds 20%
-   or the total breaks the customer's budget.
-5. The Coordinator assembles one clean, final proposal.
+### Live Demo
 
-## Why Band is the core, not a wrapper
-
-Remove Band and this system cannot function. Every part of the workflow is a Band
-primitive:
-
-- **Discovery & recruitment** - the Coordinator uses Band's peer lookup and
-  `add_participant` to assemble its team live, based on the RFP content.
-- **All coordination is @mention routing** - delegation, the review loop, the
-  human-approval escalation, and hand-offs are all Band messages between participants.
-- **The room is the workspace** - humans and agents share one space; the human can
-  step in at any point. There is no separate backend orchestrator, Band *is* the
-  orchestration layer.
-
-## The agents
-
-| Agent | Recruited when… | Role |
-|-------|-----------------|------|
-| **Coordinator** | always (entry point) | Reads RFP, recruits specialists, routes review, enforces business rules, assembles final proposal |
-| **Pricing Specialist** | RFP mentions price/budget/discount | Itemized, budget-aware pricing proposal |
-| **Technical Specialist** | RFP mentions architecture/integrations/security | Technical solution mapped to each requirement |
-| **Legal Specialist** | RFP mentions contracts/compliance/SLA/GDPR | Compliance coverage + proposed contract terms |
-| **Reviewer** | always (quality gate) | Adversarial red-team across all sections |
-
-Built cross-framework on Band's adapter system; all models run via AI/ML API.
-
-## Business rules (human-in-the-loop)
-
-- **Discount > 20%** - Coordinator halts and requests human approval in the room.
-- **Total > stated budget** - Coordinator sends it back to Pricing to revise.
-
-## Quick start
-
-```bash
-uv sync                                          # install dependencies
-cp .env.example .env                             # add your AI/ML API key
-cp agent_config.example.yaml agent_config.yaml   # add agent UUIDs + keys
-
-# verify one agent connects:
-uv run python verify_setup.py                    #  "Connected as: Coordinator"
-
-# run each agent in its own terminal:
-uv run python agents/coordinator.py
-uv run python agents/specialist.py pricing_agent
-uv run python agents/specialist.py technical_agent
-uv run python agents/specialist.py legal_agent
-uv run python agents/reviewer.py
-```
-
-Then in Band, create a room with the **Coordinator + Reviewer + you** (leave the
-specialists out — the Coordinator recruits them), and send:
-
-```
-@Coordinator Please handle this RFP: ...
-```
-
-See `sample_rfp.md` and `sample_rfp_escalation.md` for ready-to-use test RFPs.
-
-## Project structure
-
-```
-deal-desk/
-├── agents/
-│   ├── coordinator.py      # recruits, routes, enforces rules, finalizes
-│   ├── specialist.py       # runs pricing_agent | technical_agent | legal_agent
-│   └── reviewer.py         # adversarial quality gate
-├── prompts.py              # all agent roles (the brains - edit here)
-├── verify_setup.py         # connection smoke test
-├── sample_rfp.md           # standard test RFP
-├── sample_rfp_escalation.md# RFP that triggers human approval
-├── .env.example
-└── agent_config.example.yaml
-```
-
-## Built with
-
-Band SDK (`band`) · LangGraph · AI/ML API (GPT-4o) · Python 3.12
-
+**Streamlit App:**
+`<ADD_DEPLOYED_URL_HERE>`
 
 ## Demo Video 
 
 Watch the demo here :
 [ Demo Video ](https://drive.google.com/file/d/1RVQwgcvrxsLRm7oe2oxYmchXrwiBAGhd/view?usp=sharing)
+
+## Problem
+
+Enterprise proposal creation is slow, fragmented, and difficult to scale.
+
+A typical proposal often requires coordination between:
+
+* Sales
+* Pricing
+* Technical Solution Architects
+* Legal Teams
+* Management Approvers
+
+This process involves multiple handoffs, repeated reviews, inconsistent quality, and delays in customer response times.
+
+---
+
+## Solution
+
+Deal Desk creates an AI proposal team on demand.
+
+Instead of relying on a single AI agent, a Coordinator dynamically recruits only the specialists required for a given RFP.
+
+A simple renewal request may require only Pricing.
+
+A highly regulated enterprise migration may require:
+
+* Pricing
+* Technical
+* Legal
+* Reviewer
+
+The team assembles itself based on the actual requirements of the deal.
+
+---
+
+## Why Band?
+
+Band is not a wrapper around the workflow.
+
+Band is the workflow.
+
+Without Band, the system cannot function.
+
+Deal Desk relies on Band for:
+
+### Dynamic Agent Discovery
+
+The Coordinator discovers and recruits specialists at runtime.
+
+### Multi-Agent Coordination
+
+All delegation, routing, handoffs, and collaboration occur through Band messaging.
+
+### Human-in-the-Loop Approvals
+
+Humans participate directly inside the same workspace as agents.
+
+### Review Loops
+
+Agents collaborate, revise, and challenge each other's work through Band conversations.
+
+Band serves as the orchestration layer for the entire proposal generation process.
+
+---
+
+## How It Works
+
+```text
+Customer RFP
+      ↓
+Coordinator
+      ↓
+Dynamic Recruitment
+      ↓
+ ┌─────────────┐
+ │ Pricing     │
+ │ Technical   │
+ │ Legal       │
+ └─────────────┘
+      ↓
+Reviewer
+      ↓
+Human Approval
+ (if required)
+      ↓
+Final Proposal
+```
+
+---
+
+## Agent Team
+
+| Agent                | Responsibility                                                                                   |
+| -------------------- | ------------------------------------------------------------------------------------------------ |
+| Coordinator          | Reads RFP, recruits specialists, routes tasks, enforces business rules, assembles final proposal |
+| Pricing Specialist   | Generates pricing recommendations and budget-aware proposals                                     |
+| Technical Specialist | Maps technical requirements to implementation plans                                              |
+| Legal Specialist     | Reviews compliance, contracts, SLAs, and regulatory requirements                                 |
+| Reviewer             | Performs adversarial quality review and requests revisions                                       |
+
+---
+
+## Human-in-the-Loop Rules
+
+Deal Desk includes mandatory human approval for high-risk scenarios.
+
+### Escalation Trigger 1
+
+```text
+Discount > 20%
+```
+
+The workflow pauses and requests approval.
+
+### Escalation Trigger 2
+
+```text
+Total Cost > Customer Budget
+```
+
+The proposal is sent back for revision before proceeding.
+
+This ensures business oversight while maintaining automation.
+
+---
+
+## Streamlit Demo Experience
+
+For hackathon judging and public demonstration, Deal Desk includes a Streamlit-based interface that visualizes the same workflow used inside Band.
+
+Features:
+
+* Customer RFP Intake
+* Dynamic Agent Recruitment
+* Live Agent Workflow
+* Activity Feed
+* Proposal Generation
+* Executive Summary
+* Risk Analysis
+* Human Approval Simulation
+
+The demo allows judges to observe the complete proposal generation lifecycle in real time.
+
+---
+
+## Quick Start
+
+### 1. Install Dependencies
+
+```bash
+uv sync
+```
+
+### 2. Configure Environment
+
+```bash
+cp .env.example .env
+cp agent_config.example.yaml agent_config.yaml
+```
+
+Add:
+
+* AI/ML API Key
+* Agent UUIDs
+* Band configuration
+
+### 3. Verify Setup
+
+```bash
+uv run python verify_setup.py
+```
+
+Expected output:
+
+```text
+Connected as: Coordinator
+```
+
+---
+
+## Run Agents
+
+Start each agent in a separate terminal.
+
+### Coordinator
+
+```bash
+uv run python agents/coordinator.py
+```
+
+### Pricing
+
+```bash
+uv run python agents/specialist.py pricing_agent
+```
+
+### Technical
+
+```bash
+uv run python agents/specialist.py technical_agent
+```
+
+### Legal
+
+```bash
+uv run python agents/specialist.py legal_agent
+```
+
+### Reviewer
+
+```bash
+uv run python agents/reviewer.py
+```
+
+---
+
+## Using Deal Desk Inside Band
+
+Create a Band room containing:
+
+* Coordinator
+* Reviewer
+* Human Participant
+
+Do not manually add specialist agents.
+
+The Coordinator recruits them automatically.
+
+Example:
+
+```text
+@Coordinator Please handle this RFP:
+
+We require migration from Salesforce to HubSpot
+for 2500 employees across US and EU regions with
+GDPR compliance requirements.
+```
+
+The Coordinator will dynamically assemble the required team and begin processing.
+
+---
+
+## Run the Streamlit Demo
+
+```bash
+uv run streamlit run streamlit_app.py
+```
+
+You can provide the API key via:
+
+* `.env`
+* Streamlit Secrets
+* Sidebar Configuration
+
+---
+
+## Project Structure
+
+```text
+deal-desk/
+├── agents/
+│   ├── coordinator.py
+│   ├── specialist.py
+│   └── reviewer.py
+│
+├── frontend/
+│   └── orchestrator.py
+│
+├── prompts.py
+├── verify_setup.py
+├── streamlit_app.py
+├── sample_rfp.md
+├── sample_rfp_escalation.md
+├── requirements.txt
+├── .env.example
+└── agent_config.example.yaml
+```
+
+---
+
+## Example Scenarios
+
+### Scenario 1
+
+Simple License Renewal
+
+Agents Recruited:
+
+* Pricing
+
+### Scenario 2
+
+Enterprise CRM Migration
+
+Agents Recruited:
+
+* Pricing
+* Technical
+* Reviewer
+
+### Scenario 3
+
+Regulated Enterprise Deployment
+
+Agents Recruited:
+
+* Pricing
+* Technical
+* Legal
+* Reviewer
+
+---
+
+## Tech Stack
+
+* Band SDK
+* LangGraph
+* GPT-4o (AI/ML API)
+* Streamlit
+* Python 3.12
+
+---
+
+## Key Features
+
+✅ Dynamic Agent Recruitment
+
+✅ Multi-Agent Collaboration
+
+✅ Adversarial Review Loops
+
+✅ Human-in-the-Loop Governance
+
+✅ Budget-Aware Proposal Generation
+
+✅ Risk Identification
+
+✅ Enterprise Workflow Automation
+
+---
+
+## Team
+
+**Aim Nexus**
+
+Band of Agents Hackathon 2026
+
+Building practical multi-agent systems for enterprise workflows.

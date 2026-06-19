@@ -1,0 +1,9 @@
+# Frontend demo (streamlit_app.py) — minimal deps for Streamlit Community Cloud.
+# The agent backend (agents/) uses uv + pyproject.toml; this file is only for the
+# hosted demo UI, which talks to the AI/ML API directly via the openai SDK.
+streamlit>=1.40
+openai>=1.50
+python-dotenv>=1.0
+python-docx>=1.1
+fpdf2>=2.7
+markdown>=3.5
