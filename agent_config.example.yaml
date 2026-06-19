@@ -17,4 +17,3 @@ legal_agent:
 reviewer:
   agent_id: "<reviewer-agent-uuid>"
   api_key: "<reviewer-agent-api-key>"
-
