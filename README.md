@@ -11,7 +11,7 @@
 ### Live Demo
 
 **Streamlit App:**
-`<ADD_DEPLOYED_URL_HERE>`
+https://deal-desk-aim-nexus.streamlit.app/
 
 ## Demo Video 
 
