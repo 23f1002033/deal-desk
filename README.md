@@ -101,5 +101,5 @@ Band SDK (`band`) · LangGraph · AI/ML API (GPT-4o) · Python 3.12
 
 ## Demo Video 
 
-Watch the demo here:
+Watch the demo here :
 [ Demo Video ](https://drive.google.com/file/d/1RVQwgcvrxsLRm7oe2oxYmchXrwiBAGhd/view?usp=sharing)
